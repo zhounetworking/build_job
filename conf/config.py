@@ -60,16 +60,16 @@ mail_end_notify_fail = ''' \
 # jenkins master url
 
 jenkins_user        = 'admin'
-jenkins_passwd        = ''
+jenkins_passwd      = ''
 
-jenkins_url             = 'http://jenkins.hrgame.com:8080/'
-jenkins_url_test     = 'http://jenkins.hrgame.com:8080/'
+jenkins_url         = 'http://jenkins.hrgame.com:8080/'
+jenkins_url_test    = 'http://jenkins.hrgame.com:8080/'
 
 # interval is minutes
-job_exec_interval    = 10 
+job_exec_interval   = 10 
 
 # start cmm , hour
-start_cmm_interval    = 2
+start_cmm_interval  = 2
 
 # timeout of connect jenkins server
 connect_jenkins_timeout = 30
@@ -80,7 +80,7 @@ connect_jenkins_timeout = 30
 UPDATE_DEBUG = False
 
 
-test_api          = [
+test_api = [
     ('test_api' , ),
 ]
 

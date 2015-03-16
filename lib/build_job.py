@@ -121,16 +121,11 @@ def main(p_job_list,jenkins_url):
         print('startting %s, sleep %s'%(job[0],job_exec_interval))
         time.sleep(job_exec_interval)
 
-        #if '启动cmmsvrd' in job[0]:
-        #    print "%s  sleep " % job[0]
-        #    time.sleep( start_cmm_interval * 60 * 60 )
-
         print('%s is start'%job[0])
         stat = build_job(job,jenkins_url,jenkins_user,jenkins_passwd)
 
         notification(stat)
         res.append(stat)
-        #log.info(res)
 
         if stat['stat'] == 'FAILURE':
             break
@@ -160,11 +155,9 @@ def check_job_status(res_list):
     else:
         mail_text = mail_end_notify_fail % err_job_name
 
-    #log.info(mail_text)
     mail(mail_text=mail_text)
 
 if __name__ == '__main__':
-
     jenkins_url_test = 'http://jenkins.hrgame.com:8080/'
     stat = build_job(('test_api',{'ok':'no','Bool':False}),jenkins_url_test)
 
