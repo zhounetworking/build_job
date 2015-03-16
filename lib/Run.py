@@ -67,28 +67,28 @@ job_dict = {
 
 
 class Run(object):
-	def __init__(self,job_list):
-		self.status = False
-		self.job_list = job_list
+    def __init__(self,job_list):
+        self.status = False
+        self.job_list = job_list
 
-	def callback(self):
-		self.status = True
+    def callback(self):
+        self.status = True
 
-	def run(self):
-		#jenkins_url_test = 'http://jenkins.hrgame.com:8080/'                                          
+    def run(self):
+        #jenkins_url_test = 'http://jenkins.hrgame.com:8080/'                                          
 
-		if UPDATE_DEBUG:
-			result = main(job_dict[self.job_list], jenkins_url_test)	# 测试
-		else:
-			result = main(job_dict[self.job_list], jenkins_url)
+        if UPDATE_DEBUG:
+            result = main(job_dict[self.job_list], jenkins_url_test)    # 测试
+        else:
+            result = main(job_dict[self.job_list], jenkins_url)
 
-		# res: result list of jobs done
-		check_job_status(result)
+        # res: result list of jobs done
+        check_job_status(result)
 
-		self.callback()
+        self.callback()
 
-		#print('run success %s'%self.status)   
-		return result
+        #print('run success %s'%self.status)   
+        return result
 
 if __name__ == '__main__':
-	pass
+    pass

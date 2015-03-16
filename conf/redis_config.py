@@ -20,4 +20,4 @@ redis_pubsub_channel = 'jenkins_task'
 
 # Been to perform tasks id
 redis_sortedset_key  = 'celery_task_id_sort_set'
-task_id_sortset 	 = SortedSet(redis_sortedset_key)
+task_id_sortset      = SortedSet(redis_sortedset_key)

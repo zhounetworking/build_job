@@ -10,26 +10,26 @@ from celery.result import AsyncResult as async
 
 
 def get_active_task_list():
-	active_task_list = []
+    active_task_list = []
 
-	active = inspect()
-	tasks_info = active.active()
+    active = inspect()
+    tasks_info = active.active()
 
-	for task_instance in tasks_info:
-		active_task_list.extend( tasks_info[task_instance] )
+    for task_instance in tasks_info:
+        active_task_list.extend( tasks_info[task_instance] )
 
-	return active_task_list
+    return active_task_list
 
 
 def get_task_result(task_id):
-	task = async(task_id)
-	return task.result
+    task = async(task_id)
+    return task.result
 
 
 def revoke_task(task_id):
-	task = async(task_id)
-	if not task.ready():
-		task.revoke(terminate=True)
+    task = async(task_id)
+    if not task.ready():
+        task.revoke(terminate=True)
 
 
 ''' active task info
@@ -49,4 +49,4 @@ def revoke_task(task_id):
          "id": "380b1a43-9db9-4e1c-a399-6c8ab6ddb3ef", 
          "worker_pid": 10442
       }
-'''		
+'''        

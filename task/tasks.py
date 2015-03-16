@@ -29,41 +29,41 @@ def wait_time(s):
 
 @task
 def Job_run(job_type,assign_time=None):
-	'''
-		Assign time exec task
-	'''
-	num = int(assign_time) - int(time.time())
-	print('%s %s, Wait for %d second , %d minutes' % (time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(int(assign_time))), job_type, num, num/60 ))
+    '''
+        Assign time exec task
+    '''
+    num = int(assign_time) - int(time.time())
+    print('%s %s, Wait for %d second , %d minutes' % (time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(int(assign_time))), job_type, num, num/60 ))
 
-	while int(assign_time) - int(time.time()):
-		time.sleep(1)
-		num = int(assign_time) - int(time.time())
-		if num > 10 * 60:
-			time.sleep(10*60)
-			num = int(assign_time) - int(time.time())
-			print('%s %s, Wait for %d second , %d minutes' % (time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(int(assign_time))), job_type, num, num/60 ))
-	else:
-		result = {}
-		start  = time.time()
-		engine = Run(job_type)
-		res = engine.run()
-		end  = time.time()
-		result['start_time'] = start  
-		result['end_time']   = end
-		result['result']     = res
-		result['args']       = job_type
-	return result
+    while int(assign_time) - int(time.time()):
+        time.sleep(1)
+        num = int(assign_time) - int(time.time())
+        if num > 10 * 60:
+            time.sleep(10*60)
+            num = int(assign_time) - int(time.time())
+            print('%s %s, Wait for %d second , %d minutes' % (time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(int(assign_time))), job_type, num, num/60 ))
+    else:
+        result = {}
+        start  = time.time()
+        engine = Run(job_type)
+        res = engine.run()
+        end  = time.time()
+        result['start_time'] = start  
+        result['end_time']   = end
+        result['result']     = res
+        result['args']       = job_type
+    return result
 
 
 @task
 def job_run(job_type):
-	result = {}
-	start  = time.time()
-	engine = Run(job_type)
-	res = engine.run()
-	end  = time.time()
-	result['start_time'] = start
-	result['end_time']   = end
-	result['result']	 = res
-	result['args']		 = job_type
-	return result 
+    result = {}
+    start  = time.time()
+    engine = Run(job_type)
+    res = engine.run()
+    end  = time.time()
+    result['start_time'] = start
+    result['end_time']   = end
+    result['result']     = res
+    result['args']         = job_type
+    return result 

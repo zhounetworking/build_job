@@ -77,68 +77,68 @@ class new_send_msg(tornado.web.RequestHandler):
 
 # get redis
 class get_done_task_list(tornado.web.RequestHandler):
-	def get(self):
-		task_result_set = []
-		for task_id in task_id_sortset:
-			r = get_task_result(task_id)
+    def get(self):
+        task_result_set = []
+        for task_id in task_id_sortset:
+            r = get_task_result(task_id)
 
-			#if r:
-			r and task_result_set.append(r)
+            #if r:
+            r and task_result_set.append(r)
 
-		try:
-			task_result_sort_set = sorted(
-				task_result_set,
-				key=lambda x:x['start_time'],
-			)
-		except:
-			task_result_sort_set = task_result_set
+        try:
+            task_result_sort_set = sorted(
+                task_result_set,
+                key=lambda x:x['start_time'],
+            )
+        except:
+            task_result_sort_set = task_result_set
 
-		self.write('%s'% task_result_sort_set)
-		#self.write('%s \n i %s i'% (task_result_sort_set,task_id_sortset))
+        self.write('%s'% task_result_sort_set)
+        #self.write('%s \n i %s i'% (task_result_sort_set,task_id_sortset))
 
 
 class get_actives_task_list(tornado.web.RequestHandler):
-	def get(self):
-		active_task_list = get_active_task_list()
-		if active_task_list:
-			self.write('%s'%active_task_list)
-		else:
-			self.write({'info':1})
+    def get(self):
+        active_task_list = get_active_task_list()
+        if active_task_list:
+            self.write('%s'%active_task_list)
+        else:
+            self.write({'info':1})
 
 
 class get_task_results(tornado.web.RequestHandler):
-	def get(self,task_id):
-		result = get_task_result(task_id)
+    def get(self,task_id):
+        result = get_task_result(task_id)
 
-		if result:
-			self.write('%s'%result)
-		else:
-			self.write({'info':1})
+        if result:
+            self.write('%s'%result)
+        else:
+            self.write({'info':1})
 
 class delete_task_result(tornado.web.RequestHandler):
-	def get(self,task_id):
-		try:
-			revoke_task(task_id)
-			info = {'info':1}
-		except:
-			info = {'info':-1}
-		self.write(info)
+    def get(self,task_id):
+        try:
+            revoke_task(task_id)
+            info = {'info':1}
+        except:
+            info = {'info':-1}
+        self.write(info)
 
 
 class index_page(tornado.web.RequestHandler):
-	def get(self):
-		self.write('<a href="/done_task/"> done_task</a>\n'
-				   '<a href="/active_task/"> active_task</a>'
-				   '<a href=""> </a> ')
+    def get(self):
+        self.write('<a href="/done_task/"> done_task</a>\n'
+                   '<a href="/active_task/"> active_task</a>'
+                   '<a href=""> </a> ')
 
 application = tornado.web.Application([
-    (r"/",					index_page				),
-    (r"/send_msg/(\S+)", 	send_msg				),
-    (r"/new_send_msg",		new_send_msg			),
-    (r"/done_task/", 		get_done_task_list		),
-    (r"/active_task/", 		get_actives_task_list	),
-    (r"/result_task/(\S+)", get_task_results 		),
-    (r"/delete_task/(\S+)", delete_task_result 		),
+    (r"/",                    index_page                ),
+    (r"/send_msg/(\S+)",     send_msg                ),
+    (r"/new_send_msg",        new_send_msg            ),
+    (r"/done_task/",         get_done_task_list        ),
+    (r"/active_task/",         get_actives_task_list    ),
+    (r"/result_task/(\S+)", get_task_results         ),
+    (r"/delete_task/(\S+)", delete_task_result         ),
 ], **settings)
 
 if __name__ == "__main__":
