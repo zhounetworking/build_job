@@ -1,0 +1,4 @@
+======================== TODO
+1. when stop celery and start it, can running tasks are restore ? test it  ; simple test , kill all celery process , result is no ;  No Run
+
+2. Time to perform a task ,  function:  task.task.Job_run , How do wep_api.py receive parameters ;  test daemon_getmsg.py --> Job_run
